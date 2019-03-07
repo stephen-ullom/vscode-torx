@@ -1,0 +1,212 @@
+{
+	"scopeName": "text.html.torx",
+	"injections": {
+		"text.html.torx - (meta.embedded | meta.tag), L:text.html.torx meta.tag, L:text.html.torx source.js": {
+			"patterns": [{
+				"include": "#torx-comments"
+			},{
+				"include": "#torx-if"
+			},{
+				"include": "#explicit-torx-expression"
+			}, {
+				"include": "#implicit-torx-expression"
+			}]
+		}
+	},
+	"patterns": [{
+		"include": "#torx-comments"
+	}, {
+		"include": "#torx-code-block"
+	}, {
+		"include": "#torx-close-bracket"
+	}, {
+		"include": "#torx-escape-entity"
+	}, {
+		"include": "#torx-catch"
+	}, {
+		"include": "#torx-for"
+	}, {
+		"include": "#torx-function"
+	}, {
+		"include": "#torx-if"
+	}, {
+		"include": "#torx-include"
+	}, {
+		"include": "#torx-else"
+	}, {
+		"include": "#torx-else-if"
+	}, {
+		"include": "#torx-switch"
+	}, {
+		"include": "#torx-while"
+	}, {
+		"include": "#explicit-torx-expression"
+	}, {
+		"include": "#implicit-torx-expression"
+	}, {
+		"include": "text.html.basic"
+	}],
+	"repository": {
+		"torx-comments": {
+			"begin": "\\@\\*",
+			"captures": {
+				"0": {
+					"name": "punctuation.definition.comment.source.torx"
+				}
+			},
+			"name": "comment.block.torx",
+			"end": "\\*\\@"
+		},
+		"torx-code-block": {
+			"begin": "\\@\\{",
+			"captures": {
+				"0": {
+					"name": "keyword.control.torx"
+				}
+			},
+			"patterns": [{
+				"include": "source.js"
+			}],
+			"end": "\\}"
+		},
+		"torx-close-bracket": {
+			"match": "\\}",
+			"name": "keyword.control.spry"
+		},
+		"explicit-torx-expression": {
+			"name": "meta.expression.explicit.torx",
+			"begin": "(\\@)\\(",
+			"captures": {
+				"0": {
+					"name": "keyword.control.torx"
+				}
+			},
+			"patterns": [{
+				"include": "source.js"
+			}],
+			"end": "\\)"
+		},
+		"implicit-torx-expression": {
+			"name": "meta.expression.implicit.torx",
+			"match": "(?<!\\@)(\\@)([\\w\\.\\[\\]\\(\\)]+)",
+			"captures": {
+				"0": {
+					"name": "variable.expression.torx"
+				},
+				"1": {
+					"name": "keyword.control.torx"
+				}
+			}
+		},
+		"torx-escape-entity": {
+			"match": "\\@\\@",
+			"name": "keyword.control.torx"
+		},
+		"torx-catch": {
+			"begin": "(catch)\\s*\\(",
+			"captures": {
+				"0": {
+					"name": "keyword.control.torx"
+				}
+			},
+			"patterns": [{
+				"include": "source.js"
+			}],
+			"end": "\\)"
+		},
+		"torx-for": {
+			"begin": "(\\@for)\\s*\\(",
+			"captures": {
+				"0": {
+					"name": "keyword.control.torx"
+				}
+			},
+			"patterns": [{
+				"include": "source.js"
+			}],
+			"end": "\\)\\s?{"
+		},
+		"torx-function": {
+			"begin": "(\\@function)\\s(\\w+)\\s?(\\()",
+			"captures": {
+				"0": {
+					"name": "keyword.control.torx"
+				},
+				"1": {
+					"name": "keyword.control.torx"
+				},
+				"2": {
+					"name": "keyword.function.torx"
+				}
+			},
+			"patterns": [{
+				"include": "source.js"
+			}],
+			"end": "\\)"
+		},
+		"torx-if": {
+			"begin": "(\\@if)\\s*\\(",
+			"captures": {
+				"0": {
+					"name": "keyword.control.torx"
+				}
+			},
+			"patterns": [{
+				"include": "source.js"
+			}],
+			"end": "\\)\\s?{"
+		},
+		"torx-include": {
+			"begin": "(\\@include)\\s*\\(",
+			"captures": {
+				"0": {
+					"name": "keyword.control.torx"
+				}
+			},
+			"patterns": [{
+				"include": "source.js"
+			}],
+			"end": "\\)"
+		},
+		"torx-else": {
+			"match": "\\}\\s*else\\s*\\{",
+			"name": "keyword.control.torx"
+		},
+		"torx-else-if": {
+			"begin": "(else\\sif)\\s*\\(",
+			"captures": {
+				"0": {
+					"name": "keyword.control.torx"
+				}
+			},
+			"patterns": [{
+				"include": "source.js"
+			}],
+			"end": "\\)"
+		},
+		"torx-switch": {
+			"begin": "(\\@switch)\\s*\\(",
+			"captures": {
+				"0": {
+					"name": "keyword.control.torx"
+				}
+			},
+			"patterns": [{
+				"include": "source.js"
+			}],
+			"end": "\\)"
+		},
+		"torx-while": {
+			"begin": "(\\@while)\\s*\\(",
+			"captures": {
+				"0": {
+					"name": "keyword.control.torx"
+				}
+			},
+			"patterns": [{
+				"include": "source.js"
+			}],
+			"end": "\\)"
+		}
+	}
+}
