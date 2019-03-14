@@ -1,15 +1,11 @@
 {
 	"scopeName": "text.html.torx",
 	"injections": {
-		"text.html.torx - (meta.embedded | meta.tag), L:text.html.torx meta.tag, L:text.html.torx source.js": {
+		"text.html.basic - (meta.embedded | meta.tag), L:text.html.torx meta.tag, L:text.html.torx source.js": {
 			"patterns": [{
 				"include": "#torx-comments"
-			},{
-				"include": "#torx-if"
-			},{
-				"include": "#explicit-torx-expression"
 			}, {
-				"include": "#implicit-torx-expression"
+				"include": "#torx-control"
 			}]
 		}
 	},
@@ -18,17 +14,11 @@
 	}, {
 		"include": "#torx-code-block"
 	}, {
-		"include": "#torx-close-bracket"
-	}, {
 		"include": "#torx-escape-entity"
 	}, {
-		"include": "#torx-catch"
-	}, {
-		"include": "#torx-for"
+		"include": "#torx-control"
 	}, {
 		"include": "#torx-function"
-	}, {
-		"include": "#torx-if"
 	}, {
 		"include": "#torx-include"
 	}, {
@@ -38,11 +28,9 @@
 	}, {
 		"include": "#torx-switch"
 	}, {
-		"include": "#torx-while"
+		"include": "#torx-expression-explicit"
 	}, {
-		"include": "#explicit-torx-expression"
-	}, {
-		"include": "#implicit-torx-expression"
+		"include": "#torx-expression-implicit"
 	}, {
 		"include": "text.html.basic"
 	}],
@@ -69,11 +57,7 @@
 			}],
 			"end": "\\}"
 		},
-		"torx-close-bracket": {
-			"match": "\\}",
-			"name": "keyword.control.spry"
-		},
-		"explicit-torx-expression": {
+		"torx-expression-explicit": {
 			"name": "meta.expression.explicit.torx",
 			"begin": "(\\@)\\(",
 			"captures": {
@@ -86,7 +70,7 @@
 			}],
 			"end": "\\)"
 		},
-		"implicit-torx-expression": {
+		"torx-expression-implicit": {
 			"name": "meta.expression.implicit.torx",
 			"match": "(?<!\\@)(\\@)([\\w\\.\\[\\]\\(\\)]+)",
 			"captures": {
@@ -95,6 +79,11 @@
 				},
 				"1": {
 					"name": "keyword.control.torx"
+				},
+				"2": {
+					"patterns": [{
+						"include": "source.js"
+					}]
 				}
 			}
 		},
@@ -102,29 +91,22 @@
 			"match": "\\@\\@",
 			"name": "keyword.control.torx"
 		},
-		"torx-catch": {
-			"begin": "(catch)\\s*\\(",
+		"torx-control": {
+			"begin": "\\@(for|if|while)\\s*\\((.*)\\)[\\n\\s]*{",
 			"captures": {
 				"0": {
 					"name": "keyword.control.torx"
+				},
+				"2": {
+					"patterns": [{
+						"include": "source.js"
+					}]
 				}
 			},
 			"patterns": [{
-				"include": "source.js"
+				"include": "text.html.torx"
 			}],
-			"end": "\\)"
-		},
-		"torx-for": {
-			"begin": "(\\@for)\\s*\\(",
-			"captures": {
-				"0": {
-					"name": "keyword.control.torx"
-				}
-			},
-			"patterns": [{
-				"include": "source.js"
-			}],
-			"end": "\\)\\s?{"
+			"end": "}"
 		},
 		"torx-function": {
 			"begin": "(\\@function)\\s(\\w+)\\s?(\\()",
@@ -143,18 +125,6 @@
 				"include": "source.js"
 			}],
 			"end": "\\)"
-		},
-		"torx-if": {
-			"begin": "(\\@if)\\s*\\(",
-			"captures": {
-				"0": {
-					"name": "keyword.control.torx"
-				}
-			},
-			"patterns": [{
-				"include": "source.js"
-			}],
-			"end": "\\)\\s?{"
 		},
 		"torx-include": {
 			"begin": "(\\@include)\\s*\\(",
@@ -186,18 +156,6 @@
 		},
 		"torx-switch": {
 			"begin": "(\\@switch)\\s*\\(",
-			"captures": {
-				"0": {
-					"name": "keyword.control.torx"
-				}
-			},
-			"patterns": [{
-				"include": "source.js"
-			}],
-			"end": "\\)"
-		},
-		"torx-while": {
-			"begin": "(\\@while)\\s*\\(",
 			"captures": {
 				"0": {
 					"name": "keyword.control.torx"
