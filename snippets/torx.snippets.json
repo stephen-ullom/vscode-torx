@@ -14,6 +14,15 @@
             "</html>"
         ],
         "description": "Simple HTML5 starting point"
+	},
+	"Torx function": {
+        "prefix": "@function",
+        "body": [
+            "@function ${1:name}(${1}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "for: \n Code snippet for for statement"
     },
     "Torx for": {
         "prefix": "@for",
