@@ -1,41 +1,44 @@
 {
+	"name": "Torx",
 	"scopeName": "text.html.torx",
 	"injections": {
 		"text.html.basic - (meta.embedded | meta.tag), L:text.html.torx meta.tag, L:text.html.torx source.js": {
 			"patterns": [{
-				"include": "#torx-comments"
+				"include": "#block-comment"
 			}, {
-				"include": "#torx-control"
+				"include": "#statement"
+			}, {
+				"include": "#end-bracket"
 			}]
 		}
 	},
 	"patterns": [{
-		"include": "#torx-comments"
+		"include": "#block-comment"
 	}, {
-		"include": "#torx-code-block"
+		"include": "#code-block"
 	}, {
-		"include": "#torx-escape-entity"
+		"include": "#end-bracket"
 	}, {
-		"include": "#torx-control"
+		"include": "#escape-entity"
 	}, {
-		"include": "#torx-function"
+		"include": "#statement"
 	}, {
-		"include": "#torx-include"
+		"include": "#function"
 	}, {
-		"include": "#torx-else"
+		"include": "#include"
 	}, {
-		"include": "#torx-else-if"
+		"include": "#else"
 	}, {
-		"include": "#torx-switch"
+		"include": "#else-if"
 	}, {
-		"include": "#torx-expression-explicit"
+		"include": "#expression-explicit"
 	}, {
-		"include": "#torx-expression-implicit"
+		"include": "#expression-implicit"
 	}, {
 		"include": "text.html.basic"
 	}],
 	"repository": {
-		"torx-comments": {
+		"block-comment": {
 			"begin": "\\@\\*",
 			"captures": {
 				"0": {
@@ -45,7 +48,7 @@
 			"name": "comment.block.torx",
 			"end": "\\*\\@"
 		},
-		"torx-code-block": {
+		"code-block": {
 			"begin": "\\@\\{",
 			"captures": {
 				"0": {
@@ -57,7 +60,19 @@
 			}],
 			"end": "\\}"
 		},
-		"torx-expression-explicit": {
+		"end-bracket": {
+			"match": "\\}",
+			"captures": {
+				"0": {
+					"name": "keyword.control.torx"
+				}
+			}
+		},
+		"escape-entity": {
+			"match": "\\@\\@",
+			"name": "keyword.control.torx"
+		},
+		"expression-explicit": {
 			"name": "meta.expression.explicit.torx",
 			"begin": "(\\@)\\(",
 			"captures": {
@@ -70,9 +85,9 @@
 			}],
 			"end": "\\)"
 		},
-		"torx-expression-implicit": {
+		"expression-implicit": {
 			"name": "meta.expression.implicit.torx",
-			"match": "(?<!\\@)(\\@)([\\w\\.\\[\\]\\(\\)]+)",
+			"match": "(?<!\\@)(\\@)((\\w+)((?=\\.\\w)\\.\\w+)*((?=\\(.*\\))\\(.*\\))?((?=\\[.*\\]).*\\])?)",
 			"captures": {
 				"0": {
 					"name": "variable.expression.torx"
@@ -87,15 +102,26 @@
 				}
 			}
 		},
-		"torx-escape-entity": {
-			"match": "\\@\\@",
-			"name": "keyword.control.torx"
-		},
-		"torx-control": {
-			"begin": "\\@(for|if|while)\\s*\\((.*)\\)[\\n\\s]*{",
+		"statement": {
+			"begin": "\\@(for|if|while|switch)\\s*\\(",
 			"captures": {
 				"0": {
 					"name": "keyword.control.torx"
+				}
+			},
+			"patterns": [{
+				"include": "source.js"
+			}],
+			"end": "\\)\\s*\\{"
+		},
+		"function": {
+			"begin": "\\@function\\s(\\w+)\\s?\\((.*)\\)\\s*{",
+			"captures": {
+				"0": {
+					"name": "keyword.control.torx"
+				},
+				"1": {
+					"name": "meta.definition.function.torx entity.name.function.torx"
 				},
 				"2": {
 					"patterns": [{
@@ -103,30 +129,12 @@
 					}]
 				}
 			},
+			"end": "}",
 			"patterns": [{
 				"include": "text.html.torx"
-			}],
-			"end": "}"
+			}]
 		},
-		"torx-function": {
-			"begin": "(\\@function)\\s(\\w+)\\s?(\\()",
-			"captures": {
-				"0": {
-					"name": "keyword.control.torx"
-				},
-				"1": {
-					"name": "keyword.control.torx"
-				},
-				"2": {
-					"name": "keyword.function.torx"
-				}
-			},
-			"patterns": [{
-				"include": "source.js"
-			}],
-			"end": "\\)"
-		},
-		"torx-include": {
+		"include": {
 			"begin": "(\\@include)\\s*\\(",
 			"captures": {
 				"0": {
@@ -138,33 +146,21 @@
 			}],
 			"end": "\\)"
 		},
-		"torx-else": {
-			"match": "\\}\\s*else\\s*\\{",
+		"else-if": {
+			"begin": "(else\\sif)\\s?\\(",
+			"captures": {
+				"0": {
+					"name": "keyword.control.torx"
+				}
+			},
+			"patterns": [{
+				"include": "source.js"
+			}],
+			"end": "\\)\\s*\\{"
+		},
+		"else": {
+			"match": "else\\s*\\{",
 			"name": "keyword.control.torx"
-		},
-		"torx-else-if": {
-			"begin": "(else\\sif)\\s*\\(",
-			"captures": {
-				"0": {
-					"name": "keyword.control.torx"
-				}
-			},
-			"patterns": [{
-				"include": "source.js"
-			}],
-			"end": "\\)"
-		},
-		"torx-switch": {
-			"begin": "(\\@switch)\\s*\\(",
-			"captures": {
-				"0": {
-					"name": "keyword.control.torx"
-				}
-			},
-			"patterns": [{
-				"include": "source.js"
-			}],
-			"end": "\\)"
 		}
 	}
 }
