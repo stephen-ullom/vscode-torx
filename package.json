@@ -2,14 +2,18 @@
 	"name": "torx",
 	"displayName": "Torx",
 	"description": "Torx syntax and snippets.",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"publisher": "slulego",
 	"engines": {
 		"vscode": "0.10.x"
 	},
 	"categories": [
-		"Other",
+		"Programming Languages",
+		"Formatters",
 		"Snippets"
+	],
+	"activationEvents": [
+		"onLanguage:torx"
 	],
 	"repository": {
 		"type": "git",
@@ -20,18 +24,26 @@
 		"color": "#111111",
 		"theme": "dark"
 	},
+	"main": "./extension.js",
 	"scripts": {
-		"update-grammar": "node ../../build/npm/update-grammar.js grammars/javascript.json ./syntaxes/torx.tmLanguage.json"
+		"update-grammar": "node ../../build/npm/update-grammar.js"
 	},
 	"contributes": {
+		"commands": [
+			{
+				"command": "extension.torx",
+				"title": "Format Torx Files"
+			}
+		],
 		"languages": [
 			{
 				"id": "torx",
 				"extensions": [
-					".torx"
+					".html"
 				],
 				"aliases": [
-					"Torx"
+					"Torx",
+					"torx"
 				],
 				"mimetypes": [
 					"text/html"
@@ -55,10 +67,5 @@
 				"path": "./snippets/torx.snippets.json"
 			}
 		]
-	},
-	"__metadata": {
-		"id": "c3f497bb-0a5f-4561-9fc5-b9195dd3ed8b",
-		"publisherDisplayName": "Slulego",
-		"publisherId": "926a1e7e-c0e7-4762-bd18-9cda179cf409"
 	}
 }

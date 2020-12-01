@@ -1,5 +1,5 @@
 {
-    "HTML template": {
+    "HTML Template": {
         "prefix": "html",
         "body": [
             "<!DOCTYPE html>",
@@ -14,63 +14,125 @@
             "</html>"
         ],
         "description": "Simple HTML5 starting point"
-	},
-	"Torx function": {
-        "prefix": "@function",
-        "body": [
-            "@function ${1:name}(${1}) {",
-            "\t$0",
-            "}"
-        ],
-        "description": "for: \n Code snippet for for statement"
     },
-    "Torx for": {
+    "For Loop": {
         "prefix": "@for",
         "body": [
-            "@for (${1:index} in ${1:index}) {",
+            "@for (let ${1:index} = 0; ${1:index} < ${2:array}.length; ${1:index}++) {",
             "\t$0",
             "}"
         ],
-        "description": "for: \n Code snippet for for statement"
+        "description": "For Loop"
     },
-    "Torx if": {
+    "For-In Loop": {
+        "prefix": "@forin",
+        "body": [
+            "@for (const ${1:key} in ${2:object}) {",
+            "\tconst ${3:element} = ${2:object}[${1:key}];",
+            "\t$0",
+            "}"
+        ],
+        "description": "For-In Loop"
+    },
+    "For-Of Loop": {
+        "prefix": "@forof",
+        "body": [
+            "@for (const ${1:iterator} of ${2:object}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "For-Of Loop"
+    },
+    "Function Statement": {
+        "prefix": "@function",
+        "body": [
+            "@function ${1:name}(${2:params}) {",
+            "\t$0",
+            "}"
+        ],
+        "description": "Function Statement"
+    },
+    "If Statement": {
         "prefix": "@if",
         "body": [
-            "@if ($1) {",
+            "@if (${1:condition}) {",
             "\t$0",
             "}"
         ],
-        "description": "if: \n Code snippet for if statement"
+        "description": "If Statement"
     },
-    "Torx if else": {
+    "If-Else Statement": {
         "prefix": "@ifelse",
         "body": [
-            "if ($1) {",
-            "\t$2",
+            "@if (${1:condition}) {",
+            "\t$0",
             "} else {",
-            "\t$0",
+            "\t",
             "}"
         ],
-        "description": "if: \n Code snippet for if else statement"
+        "description": "If-Else Statement"
     },
-    "Torx try": {
-        "prefix": "@try",
+    "Switch Statement": {
+        "prefix": "@switch",
         "body": [
-            "@try {",
-            "\t$1",
-            "} catch (Exception ${2:exception}) {",
-            "\t$0",
+            "@switch (${1:key}) {",
+            "\tcase ${2:value}:",
+            "\t\t$0",
+            "\t\tbreak;",
+            "",
+            "\tdefault:",
+            "\t\tbreak;",
             "}"
         ],
-        "description": "try catch: \n Code snippet for try catch statement"
+        "description": "Switch Statement"
     },
-    "Torx while": {
+    "While Statement": {
         "prefix": "@while",
         "body": [
-            "@while ($1) {",
+            "@while (${1:condition}) {",
             "\t$0",
             "}"
         ],
-        "description": "while: \n Code snippet for while statement"
+        "description": "While Statement"
+    },
+    "Do-While Statement": {
+        "prefix": "@dowhile",
+        "body": [
+            "@do {",
+            "\t$0",
+            "} while (${1:condition})"
+        ],
+        "description": "Do-While Statement"
+    },
+    "Try-Catch Statement": {
+        "prefix": "@trycatch",
+        "body": [
+            "@try {",
+            "\t$0",
+            "} catch (${1:error}) {",
+            "\t",
+            "}"
+        ],
+        "description": "Try-Catch Statement"
+    },
+    "Render Partial": {
+        "prefix": "@partial",
+        "body": "@this.renderPartial('${1:fileName}')",
+        "description": "Render Partial"
+    },
+    "Render Body": {
+        "prefix": "@render",
+        "body": "@this.renderBody()",
+        "description": "Render Body"
+    },
+    "Set Layout": {
+        "prefix": "@layout",
+        "body": "@this.layout = '${1:fileName}'",
+        "description": "Set Layout"
+    },
+    "Raw": {
+        "prefix": "@raw",
+        "body": "@this.raw('${1:HTML}')",
+        "description": "Set Layout"
     }
 }
