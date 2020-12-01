@@ -11,12 +11,12 @@ function activate(context) {
             for (let lineIndex = 0; lineIndex < document.lineCount; lineIndex++) {
 
                 let line = document.lineAt(lineIndex)
+                
                 let whitespaceLength = 0
                 let whitespaceMatch = line.text.match(/^\s*/)
 
                 let openBrackets = line.text.match(/<[^\/|!][^>]*[^\/]>|<(?!.*\/?>)|{/g)
                 let closeBrackets = line.text.match(/<\/\w+>|}/g)
-                let closeAfter = false
 
                 if (whitespaceMatch) {
                     whitespaceLength = whitespaceMatch[0].length
