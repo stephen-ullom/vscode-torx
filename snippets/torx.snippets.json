@@ -13,7 +13,14 @@
             "</body>",
             "</html>"
         ],
-        "description": "Simple HTML5 starting point"
+        "description": "Simple HTML starting point"
+    },
+    "HTML Comment": {
+        "prefix": "comment",
+        "body": [
+            "<!-- $1 -->"
+        ],
+        "description": "HTML comment"
     },
     "For Loop": {
         "prefix": "@for",
@@ -22,7 +29,7 @@
             "\t$0",
             "}"
         ],
-        "description": "For Loop"
+        "description": "For loop"
     },
     "For-In Loop": {
         "prefix": "@forin",
@@ -32,7 +39,7 @@
             "\t$0",
             "}"
         ],
-        "description": "For-In Loop"
+        "description": "For-In loop"
     },
     "For-Of Loop": {
         "prefix": "@forof",
@@ -41,7 +48,7 @@
             "\t$0",
             "}"
         ],
-        "description": "For-Of Loop"
+        "description": "For-Of loop"
     },
     "Function Statement": {
         "prefix": "@function",
@@ -50,7 +57,7 @@
             "\t$0",
             "}"
         ],
-        "description": "Function Statement"
+        "description": "Function statement"
     },
     "If Statement": {
         "prefix": "@if",
@@ -59,7 +66,7 @@
             "\t$0",
             "}"
         ],
-        "description": "If Statement"
+        "description": "If statement"
     },
     "If-Else Statement": {
         "prefix": "@ifelse",
@@ -70,7 +77,7 @@
             "\t",
             "}"
         ],
-        "description": "If-Else Statement"
+        "description": "If-Else statement"
     },
     "Switch Statement": {
         "prefix": "@switch",
@@ -84,7 +91,7 @@
             "\t\tbreak;",
             "}"
         ],
-        "description": "Switch Statement"
+        "description": "Switch statement"
     },
     "While Statement": {
         "prefix": "@while",
@@ -93,7 +100,7 @@
             "\t$0",
             "}"
         ],
-        "description": "While Statement"
+        "description": "While statement"
     },
     "Do-While Statement": {
         "prefix": "@dowhile",
@@ -102,7 +109,7 @@
             "\t$0",
             "} while (${1:condition})"
         ],
-        "description": "Do-While Statement"
+        "description": "Do-While statement"
     },
     "Try-Catch Statement": {
         "prefix": "@trycatch",
@@ -113,26 +120,26 @@
             "\t",
             "}"
         ],
-        "description": "Try-Catch Statement"
+        "description": "Try-Catch statement"
     },
     "Render Partial": {
         "prefix": "@partial",
         "body": "@this.renderPartial('${1:fileName}')",
-        "description": "Render Partial"
+        "description": "Render partial"
     },
     "Render Body": {
         "prefix": "@render",
         "body": "@this.renderBody()",
-        "description": "Render Body"
+        "description": "Render body"
     },
     "Set Layout": {
         "prefix": "@layout",
         "body": "@this.layout = '${1:fileName}'",
-        "description": "Set Layout"
+        "description": "Set layout"
     },
     "Raw": {
         "prefix": "@raw",
         "body": "@this.raw('${1:HTML}')",
-        "description": "Set Layout"
+        "description": "Output raw HTML"
     }
 }
