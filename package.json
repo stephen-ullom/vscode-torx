@@ -19,12 +19,12 @@
 		"type": "git",
 		"url": "https://github.com/slulego/vscode-torx.git"
 	},
-	"icon": "icon.png",
+	"icon": "images/icon.png",
 	"galleryBanner": {
 		"color": "#111111",
 		"theme": "dark"
 	},
-	"main": "./extension.js",
+	"main": "./formatter.js",
 	"scripts": {
 		"update-grammar": "node ../../build/npm/update-grammar.js"
 	},
@@ -39,6 +39,7 @@
 			{
 				"id": "torx",
 				"extensions": [
+					".torx",
 					".html"
 				],
 				"aliases": [
