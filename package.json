@@ -2,7 +2,7 @@
 	"name": "torx",
 	"displayName": "Torx",
 	"description": "Torx syntax and snippets.",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"publisher": "slulego",
 	"engines": {
 		"vscode": "0.10.x"
