@@ -2,7 +2,7 @@
 	"name": "torx",
 	"displayName": "Torx",
 	"description": "Torx syntax and snippets.",
-	"version": "0.1.1",
+	"version": "0.2.0",
 	"publisher": "slulego",
 	"engines": {
 		"vscode": "0.10.x"
@@ -24,7 +24,7 @@
 		"color": "#111111",
 		"theme": "dark"
 	},
-	"main": "./formatter.js",
+	"main": "./index.js",
 	"scripts": {
 		"update-grammar": "node ../../build/npm/update-grammar.js"
 	},
@@ -39,8 +39,7 @@
 			{
 				"id": "torx",
 				"extensions": [
-					".torx",
-					".html"
+					".torx"
 				],
 				"aliases": [
 					"Torx",
@@ -58,7 +57,7 @@
 				"scopeName": "text.html.torx",
 				"path": "./syntaxes/torx.tmLanguage.json",
 				"embeddedLanguages": {
-					"section.embedded.source.torx": "torx"
+					"text.html.basic": "html"
 				}
 			}
 		],

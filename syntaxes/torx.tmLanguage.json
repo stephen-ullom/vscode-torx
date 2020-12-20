@@ -1,105 +1,61 @@
 {
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Torx",
 	"scopeName": "text.html.torx",
 	"injections": {
-		"text.html.basic - (meta.embedded | meta.tag), L:text.html.torx meta.tag, L:text.html.torx source.js": {
+		"text.html.torx - comment.block.torx": {
 			"patterns": [
 				{
-					"include": "#comment"
+					"include": "#code-block"
+				},
+				{
+					"include": "#end-bracket"
+				},
+				{
+					"include": "#escape-entity"
 				},
 				{
 					"include": "#statement"
 				},
 				{
-					"include": "#end-bracket"
-				}
-			]
-		},
-		"source.js - (meta.embedded | meta.tag), L:text.html.torx meta.tag": {
-			"patterns": [
-				{
-					"include": "#expression-explicit"
+					"include": "#function"
 				},
 				{
-					"include": "#expression-implicit"
+					"include": "#include"
+				},
+				{
+					"include": "#else"
+				},
+				{
+					"include": "#else-if"
+				},
+				{
+					"include": "#explicit-expression"
+				},
+				{
+					"include": "#implicit-expression"
+				},
+				{
+					"include": "#comment"
 				}
 			]
 		}
 	},
 	"patterns": [
 		{
-			"include": "#comment"
-		},
-		{
-			"include": "#code-block"
-		},
-		{
-			"include": "#end-bracket"
-		},
-		{
-			"include": "#escape-entity"
-		},
-		{
-			"include": "#statement"
-		},
-		{
-			"include": "#function"
-		},
-		{
-			"include": "#include"
-		},
-		{
-			"include": "#else"
-		},
-		{
-			"include": "#else-if"
-		},
-		{
-			"include": "#expression-explicit"
-		},
-		{
-			"include": "#expression-implicit"
-		},
-		{
 			"include": "text.html.basic"
 		}
 	],
 	"repository": {
 		"comment": {
-			"patterns": [
-				{
-					"begin": "\\@\\*",
-					"captures": {
-						"0": {
-							"name": "punctuation.definition.comment.source.torx"
-						}
-					},
-					"name": "comment.block.torx",
-					"end": "\\*\\@"
-				},
-				{
-					"begin": "(^[ \\t]+)?((@//)(?:\\s*((@)internal)(?=\\s|$))?)",
-					"beginCaptures": {
-						"1": {
-							"name": "punctuation.whitespace.comment.leading.js"
-						},
-						"2": {
-							"name": "comment.line.double-slash.js"
-						},
-						"3": {
-							"name": "punctuation.definition.comment.js"
-						},
-						"4": {
-							"name": "storage.type.internaldeclaration.js"
-						},
-						"5": {
-							"name": "punctuation.decorator.internaldeclaration.js"
-						}
-					},
-					"end": "(?=$)",
-					"contentName": "comment.line.double-slash.js"
+			"begin": "\\@\\*",
+			"captures": {
+				"0": {
+					"name": "punctuation.definition.comment.torx"
 				}
-			]
+			},
+			"end": "\\*\\@",
+			"name": "comment.block.torx"
 		},
 		"code-block": {
 			"begin": "\\@\\{",
@@ -119,7 +75,7 @@
 			"match": "\\@\\@",
 			"name": "keyword.control.torx"
 		},
-		"expression-explicit": {
+		"explicit-expression": {
 			"name": "meta.expression.explicit.torx",
 			"begin": "(\\@)\\(",
 			"captures": {
@@ -134,7 +90,7 @@
 			],
 			"end": "\\)"
 		},
-		"expression-implicit": {
+		"implicit-expression": {
 			"name": "meta.expression.implicit.torx",
 			"match": "(?<!\\@)(\\@)((\\w+)((?=\\.\\w)\\.\\w+)*((?=\\(.*\\))\\(.*\\))?((?=\\[.*\\]).*\\])?)",
 			"captures": {
@@ -181,7 +137,7 @@
 					"name": "keyword.control.torx"
 				},
 				"1": {
-					"name": "meta.definition.function.torx entity.name.function.torx"
+					"name": "meta.definition.function.torx"
 				},
 				"2": {
 					"patterns": [
@@ -191,7 +147,7 @@
 					]
 				}
 			},
-			"end": "}",
+			"end": "\\}",
 			"patterns": [
 				{
 					"include": "text.html.torx"

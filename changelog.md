@@ -1,16 +1,17 @@
-## 0.1.1
+## 0.2.0
 
-12 Dec 2020
+20 Dec 2020
 
-- Remove `@//` comment.
-- Update auto closing pairs.
+- Removed `@//` comment.
+- Improved formatting.
+- Improved syntax highlighting.
 
 ## 0.1.0
 
 8 Dec 2020
 
-- Add Torx formatter.
-- Updated icon.
+- Added Torx formatter.
+- Improved icon.
 
 ## 0.0.1
 

@@ -12,8 +12,8 @@ function activate(context) {
             for (let lineIndex = 0; lineIndex < document.lineCount; lineIndex++) {
                 let line = document.lineAt(lineIndex)
 
-                // Remove @// or // comments from line
-                let lineText = line.text.replace(/\@\/\/.*|^\s*\/\/.*/, '')
+                // Remove // comment from line
+                let lineText = line.text.replace(/^\s*\/\/.*/, '')
 
                 // Whitespace at the beginning of the line.
                 let spaceMatch = line.text.match(/^\s*/)
@@ -22,8 +22,8 @@ function activate(context) {
                 if (lineText.match(/^\s*\<\/\w+\>/)) {
                     // Begin in </tag>
                     indentCount--
-                } else if (lineText.match(/^\s*\}/)) {
-                    // Begin in }
+                } else if (lineText.match(/^\s*[\}\]]/)) {
+                    // Begin with } or ]
                     indentCount--
                 }
 
@@ -52,8 +52,8 @@ function activate(context) {
                         // Not begin with </tag>
                         indentCount--
                     }
-                } else if (lineText.match(/\{\s*$/)) {
-                    // End in {
+                } else if (lineText.match(/[\{\[]\s*$/)) {
+                    // End in { or [
                     indentCount++
                 }
             }
