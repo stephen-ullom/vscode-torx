@@ -2,8 +2,9 @@
 
 Torx extension for Visual Studio Code. 
 
-- Code formatting
+- Formatting
 - Syntax highlighting
+- Snippets
 
 
 [Torx Package](https://www.npmjs.com/package/torx) - JavaScript template engine based on Razor syntax.
