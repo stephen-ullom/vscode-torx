@@ -45,9 +45,6 @@
 					"Torx",
 					"torx"
 				],
-				"mimetypes": [
-					"text/html"
-				],
 				"configuration": "./language-configuration.json"
 			}
 		],
