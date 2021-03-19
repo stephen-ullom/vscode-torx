@@ -1,3 +1,10 @@
+## 0.2.1
+
+18 Mar 2021
+
+- Fix default language for html files
+- New screenshot
+
 ## 0.2.0
 
 20 Dec 2020
