@@ -13,3 +13,7 @@
 Install the extension from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Slulego.torx).
 
 Install the [Npm package](https://www.npmjs.com/package/torx).
+
+## Contribute
+
+View the extension repository on [GitHub](https://github.com/stephen-ullom/vscode-torx)
