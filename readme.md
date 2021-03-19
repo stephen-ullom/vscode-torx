@@ -1,14 +1,15 @@
-# Torx
+# Torx for Visual Studio Code
 
-Torx extension for Visual Studio Code. 
+![Screenshot](https://raw.githubusercontent.com/stephen-ullom/vscode-torx/master/images/screenshot.png "Editor Screenshot")
+
+## Features
 
 - Formatting
 - Syntax highlighting
 - Snippets
 
+## Download
 
-[Torx Package](https://www.npmjs.com/package/torx) - JavaScript template engine based on Razor syntax.
+Install the extension from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Slulego.torx).
 
-
-![Editor Screenshot](https://raw.githubusercontent.com/slulego/vscode-torx/master/images/screenshot.png "Editor Screenshot")
-Theme: Material Theme Darker High Contrast
+Install the [Npm package](https://www.npmjs.com/package/torx).
