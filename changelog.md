@@ -3,7 +3,7 @@
 18 Mar 2021
 
 - Fix default language for html files
-- New screenshot
+- Update readme
 
 ## 0.2.0
 
