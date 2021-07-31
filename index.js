@@ -33,7 +33,9 @@ function activate(context) {
 
                 if (indentCount >= 0 && !line.text.match(/^\s*$/)) {
                     // positive indent || not only whitespace
-                    indentation = '    '.repeat(indentCount)
+                    const userConfiguration = vscode.workspace.getConfiguration()
+                    const tabSize = userConfiguration.get('editor.tabSize');
+                    indentation = ' '.repeat(tabSize).repeat(indentCount)
                 }
 
                 let edit = vscode.TextEdit.replace(new vscode.Range(start, end), indentation)
