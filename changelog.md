@@ -1,3 +1,9 @@
+## 0.2.2
+
+31 July 2021
+
+- Respect user tab size configuration
+
 ## 0.2.1
 
 18 Mar 2021

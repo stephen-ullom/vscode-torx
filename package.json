@@ -2,7 +2,7 @@
 	"name": "torx",
 	"displayName": "Torx",
 	"description": "Torx syntax and snippets.",
-	"version": "0.2.1",
+	"version": "0.2.2",
 	"publisher": "slulego",
 	"engines": {
 		"vscode": "0.10.x"
@@ -17,7 +17,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/slulego/vscode-torx.git"
+		"url": "https://github.com/stephen-ullom/vscode-torx.git"
 	},
 	"icon": "images/icon.png",
 	"galleryBanner": {

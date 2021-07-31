@@ -5,8 +5,9 @@ function activate(context) {
     vscode.languages.registerDocumentFormattingEditProvider('torx', {
 
         provideDocumentFormattingEdits(document) {
-
-            let output = []
+            const configuration = vscode.workspace.getConfiguration()
+            const tabSize = configuration.get('editor.tabSize');
+            const output = []
             let indentCount = 0
 
             for (let lineIndex = 0; lineIndex < document.lineCount; lineIndex++) {
@@ -32,9 +33,7 @@ function activate(context) {
                 let indentation = ''
 
                 if (indentCount >= 0 && !line.text.match(/^\s*$/)) {
-                    // positive indent || not only whitespace
-                    const userConfiguration = vscode.workspace.getConfiguration()
-                    const tabSize = userConfiguration.get('editor.tabSize');
+                    // Positive indent || not only whitespace
                     indentation = ' '.repeat(tabSize).repeat(indentCount)
                 }
 
