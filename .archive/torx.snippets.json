@@ -1,5 +1,28 @@
 {
-    "For loop": {
+    "HTML Template": {
+        "prefix": "html",
+        "body": [
+            "<!DOCTYPE html>",
+            "<html>",
+            "<head>",
+            "\t<title>${1:Page Title}</title>",
+            "\t<link rel=\"stylesheet\" type=\"text/css\" href=\"${2:main.css}\" />",
+            "</head>",
+            "<body>",
+            "\t$0",
+            "</body>",
+            "</html>"
+        ],
+        "description": "Simple HTML starting point"
+    },
+    "HTML Comment": {
+        "prefix": "comment",
+        "body": [
+            "<!-- $1 -->"
+        ],
+        "description": "HTML comment"
+    },
+    "For Loop": {
         "prefix": "@for",
         "body": [
             "@for (let ${1:index} = 0; ${1:index} < ${2:array}.length; ${1:index}++) {",
@@ -8,7 +31,7 @@
         ],
         "description": "For loop"
     },
-    "For-In loop": {
+    "For-In Loop": {
         "prefix": "@forin",
         "body": [
             "@for (const ${1:key} in ${2:object}) {",
@@ -18,7 +41,7 @@
         ],
         "description": "For-In loop"
     },
-    "For-Of loop": {
+    "For-Of Loop": {
         "prefix": "@forof",
         "body": [
             "@for (const ${1:iterator} of ${2:object}) {",
@@ -27,7 +50,7 @@
         ],
         "description": "For-Of loop"
     },
-    "Function statement": {
+    "Function Statement": {
         "prefix": "@function",
         "body": [
             "@function ${1:name}(${2:params}) {",
@@ -36,7 +59,7 @@
         ],
         "description": "Function statement"
     },
-    "If statement": {
+    "If Statement": {
         "prefix": "@if",
         "body": [
             "@if (${1:condition}) {",
@@ -45,7 +68,7 @@
         ],
         "description": "If statement"
     },
-    "If-Else statement": {
+    "If-Else Statement": {
         "prefix": "@ifelse",
         "body": [
             "@if (${1:condition}) {",
@@ -56,7 +79,7 @@
         ],
         "description": "If-Else statement"
     },
-    "Switch statement": {
+    "Switch Statement": {
         "prefix": "@switch",
         "body": [
             "@switch (${1:key}) {",
@@ -70,7 +93,7 @@
         ],
         "description": "Switch statement"
     },
-    "While statement": {
+    "While Statement": {
         "prefix": "@while",
         "body": [
             "@while (${1:condition}) {",
@@ -79,7 +102,7 @@
         ],
         "description": "While statement"
     },
-    "Do-While statement": {
+    "Do-While Statement": {
         "prefix": "@dowhile",
         "body": [
             "@do {",
@@ -88,7 +111,7 @@
         ],
         "description": "Do-While statement"
     },
-    "Try-Catch statement": {
+    "Try-Catch Statement": {
         "prefix": "@trycatch",
         "body": [
             "@try {",
@@ -98,5 +121,25 @@
             "}"
         ],
         "description": "Try-Catch statement"
+    },
+    "Render Partial": {
+        "prefix": "@partial",
+        "body": "@this.renderPartial('${1:fileName}')",
+        "description": "Render partial"
+    },
+    "Render Body": {
+        "prefix": "@render",
+        "body": "@this.renderBody()",
+        "description": "Render body"
+    },
+    "Set Layout": {
+        "prefix": "@layout",
+        "body": "@this.layout = '${1:fileName}'",
+        "description": "Set layout"
+    },
+    "Raw": {
+        "prefix": "@raw",
+        "body": "@this.raw('${1:HTML}')",
+        "description": "Output raw HTML"
     }
 }

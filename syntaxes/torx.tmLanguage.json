@@ -1,193 +1,357 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Torx",
-	"scopeName": "text.html.torx",
-	"injections": {
-		"text.html.torx - comment.block.torx": {
+	"scopeName": "text.torx",
+	"patterns": [
+		{
+			"include": "#xml"
+		},
+		{
+			"include": "#json"
+		},
+		{
+			"include": "#sql"
+		},
+		{
+			"include": "#torx"
+		}
+	],
+	"repository": {
+		"torx": {
 			"patterns": [
 				{
-					"include": "#code-block"
-				},
-				{
-					"include": "#end-bracket"
+					"include": "#torx-code-block"
 				},
 				{
 					"include": "#escape-entity"
 				},
 				{
-					"include": "#statement"
+					"include": "#explicit-torx-expression"
 				},
 				{
-					"include": "#function"
+					"include": "#implicit-torx-expression"
 				},
 				{
-					"include": "#include"
+					"include": "#torx-statement"
 				},
 				{
-					"include": "#else"
+					"include": "#torx-function"
 				},
 				{
-					"include": "#else-if"
+					"include": "#torx-else-if"
 				},
 				{
-					"include": "#explicit-expression"
+					"include": "#torx-else"
 				},
 				{
-					"include": "#implicit-expression"
-				},
-				{
-					"include": "#comment"
-				}
-			]
-		}
-	},
-	"patterns": [
-		{
-			"include": "text.html.basic"
-		}
-	],
-	"repository": {
-		"comment": {
-			"begin": "\\@\\*",
-			"captures": {
-				"0": {
-					"name": "punctuation.definition.comment.torx"
-				}
-			},
-			"end": "\\*\\@",
-			"name": "comment.block.torx"
-		},
-		"code-block": {
-			"begin": "\\@\\{",
-			"captures": {
-				"0": {
-					"name": "keyword.control.torx"
-				}
-			},
-			"patterns": [
-				{
-					"include": "source.js"
+					"include": "#torx-illegal"
 				}
 			],
-			"end": "\\}"
-		},
-		"escape-entity": {
-			"match": "\\@\\@",
-			"name": "keyword.control.torx"
-		},
-		"explicit-expression": {
-			"name": "meta.expression.explicit.torx",
-			"begin": "(\\@)\\(",
-			"captures": {
-				"0": {
-					"name": "keyword.control.torx"
-				}
-			},
-			"patterns": [
-				{
-					"include": "source.js"
-				}
-			],
-			"end": "\\)"
-		},
-		"implicit-expression": {
-			"name": "meta.expression.implicit.torx",
-			"match": "(?<!\\@)(\\@)((\\w+)((?=\\.\\w)\\.\\w+)*((?=\\(.*\\))\\(.*\\))?((?=\\[.*\\]).*\\])?)",
-			"captures": {
-				"0": {
-					"name": "variable.expression.torx"
-				},
-				"1": {
-					"name": "keyword.control.torx"
-				},
-				"2": {
+			"repository": {
+				"torx-code-block": {
+					"begin": "\\@\\{",
+					"captures": {
+						"0": {
+							"name": "keyword.control.torx"
+						}
+					},
 					"patterns": [
 						{
 							"include": "source.js"
 						}
+					],
+					"end": "\\}"
+				},
+				"escape-entity": {
+					"match": "\\@\\@",
+					"name": "keyword.control.torx"
+				},
+				"explicit-torx-expression": {
+					"name": "meta.expression.explicit.torx",
+					"begin": "(\\@)\\(",
+					"captures": {
+						"0": {
+							"name": "keyword.control.torx"
+						}
+					},
+					"patterns": [
+						{
+							"include": "source.js"
+						}
+					],
+					"end": "\\)"
+				},
+				"implicit-torx-expression": {
+					"name": "meta.expression.implicit.torx",
+					"match": "(?<!\\@)(\\@)((\\w+)((?=\\.\\w)\\.\\w+)*((?=\\(.*\\))\\(.*\\))?((?=\\[.*\\]).*\\])?)",
+					"captures": {
+						"0": {
+							"name": "variable.expression.torx"
+						},
+						"1": {
+							"name": "keyword.control.torx"
+						},
+						"2": {
+							"patterns": [
+								{
+									"include": "source.js"
+								}
+							]
+						}
+					}
+				},
+				"torx-statement": {
+					"begin": "\\@(for|if|while|switch)\\s*\\((.*)\\)\\s*\\{",
+					"captures": {
+						"0": {
+							"name": "keyword.control.torx"
+						},
+						"2": {
+							"patterns": [
+								{
+									"include": "source.js"
+								}
+							]
+						}
+					},
+					"patterns": [
+						{
+							"include": "source.js"
+						}
+					],
+					"end": "\\}"
+				},
+				"torx-function": {
+					"begin": "\\@function\\s(\\w+)\\s?\\((.*)\\)\\s*\\{",
+					"captures": {
+						"0": {
+							"name": "keyword.control.torx"
+						},
+						"1": {
+							"name": "meta.definition.function.torx"
+						},
+						"2": {
+							"patterns": [
+								{
+									"include": "source.js"
+								}
+							]
+						}
+					},
+					"end": "\\}",
+					"patterns": [
+						{
+							"include": "text.html.torx"
+						}
 					]
+				},
+				"torx-else-if": {
+					"begin": "(else\\sif)\\s?\\((.*)\\)\\s*\\{",
+					"captures": {
+						"0": {
+							"name": "keyword.control.torx"
+						},
+						"2": {
+							"patterns": [
+								{
+									"include": "source.js"
+								}
+							]
+						}
+					},
+					"patterns": [
+						{
+							"include": "source.js"
+						}
+					],
+					"end": "\\}"
+				},
+				"torx-else": {
+					"begin": "else\\s*\\{",
+					"captures": {
+						"0": {
+							"name": "keyword.control.torx"
+						}
+					},
+					"patterns": [
+						{
+							"include": "source.js"
+						}
+					],
+					"end": "\\}"
+				},
+				"torx-illegal": {
+					"match": "\\@[^\\w]",
+					"name": "invalid.illegal.bad-entity.torx"
 				}
 			}
 		},
-		"statement": {
-			"begin": "\\@(for|if|while|switch)\\s*\\((.*)\\)\\s*\\{",
-			"captures": {
-				"0": {
-					"name": "keyword.control.torx"
-				},
-				"2": {
-					"patterns": [
-						{
-							"include": "source.js"
-						}
-					]
-				}
-			},
+		"xml": {
 			"patterns": [
 				{
-					"include": "source.js"
-				}
-			],
-			"end": "\\}"
-		},
-		"function": {
-			"begin": "\\@function\\s(\\w+)\\s?\\((.*)\\)\\s*\\{",
-			"captures": {
-				"0": {
-					"name": "keyword.control.torx"
+					"match": "<\\/?([^\\s\\<\\>]+)>",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.tag.xml"
+						},
+						"1": {
+							"name": "entity.name.tag.xml"
+						}
+					},
+					"name": "meta.tag.xml"
 				},
-				"1": {
-					"name": "meta.definition.function.torx"
-				},
-				"2": {
+				{
+					"begin": "<([^\\s\\<\\>\\/]+)",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.tag.xml"
+						},
+						"1": {
+							"name": "entity.name.tag.xml",
+							"patterns": [
+								{
+									"include": "#torx"
+								}
+							]
+						}
+					},
+					"end": "(\\/?)>",
+					"endCaptures": {
+						"0": {
+							"name": "entity.name.tag.xml"
+						},
+						"1": {
+							"name": "punctuation.definition.tag.xml"
+						}
+					},
+					"name": "meta.tag.xml",
 					"patterns": [
 						{
-							"include": "source.js"
+							"include": "#torx"
+						},
+						{
+							"include": "#strings"
+						},
+						{
+							"match": "([^\\s]+)=",
+							"captures": {
+								"1": {
+									"name": "entity.other.attribute-name.xml",
+									"patterns": [
+										{
+											"include": "#torx"
+										}
+									]
+								}
+							}
 						}
 					]
-				}
-			},
-			"end": "\\}",
-			"patterns": [
-				{
-					"include": "text.html.torx"
 				}
 			]
 		},
-		"else-if": {
-			"begin": "(else\\sif)\\s?\\((.*)\\)\\s*\\{",
-			"captures": {
-				"0": {
-					"name": "keyword.control.torx"
-				},
-				"2": {
+		"json": {
+			"patterns": [
+				{
+					"name": "meta.language.json",
+					"begin": "\\{",
+					"end": "\\}",
 					"patterns": [
 						{
-							"include": "source.js"
+							"include": "#torx"
+						},
+						{
+							"include": "#strings"
+						},
+						{
+							"include": "#numbers"
 						}
 					]
 				}
-			},
+			]
+		},
+		"sql": {
 			"patterns": [
 				{
-					"include": "source.js"
+					"name": "string.uppercase.sql",
+					"match": "(\\s|^)[A-Z]{2,}(\\s|$)",
+					"captures": {
+						"0": {
+							"name": "variable.language.sql"
+						}
+					}
+				},
+				{
+					"name": "string.quoted.sql",
+					"begin": "`",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.sql"
+						}
+					},
+					"end": "`",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.sql"
+						}
+					}
+				},
+				{
+					"include": "#numbers"
 				}
-			],
-			"end": "\\}"
+			]
 		},
-		"else": {
-			"begin": "else\\s*\\{",
+		"strings": {
+			"patterns": [
+				{
+					"name": "string.quoted.single.text",
+					"begin": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.text"
+						}
+					},
+					"end": "'",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.text"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#torx"
+						}
+					]
+				},
+				{
+					"name": "string.quoted.double.text",
+					"begin": "\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.text"
+						}
+					},
+					"end": "\"",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.text"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#torx"
+						}
+					]
+				}
+			]
+		},
+		"numbers": {
+			"name": "number.text",
+			"match": "\\d+",
 			"captures": {
 				"0": {
-					"name": "keyword.control.torx"
+					"name": "constant.numeric.text"
 				}
-			},
-			"patterns": [
-				{
-					"include": "source.js"
-				}
-			],
-			"end": "\\}"
+			}
 		}
 	}
 }

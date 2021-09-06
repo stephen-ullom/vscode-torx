@@ -5,39 +5,39 @@ function activate(context) {
     vscode.languages.registerDocumentFormattingEditProvider('torx', {
 
         provideDocumentFormattingEdits(document) {
-            const configuration = vscode.workspace.getConfiguration()
+            const configuration = vscode.workspace.getConfiguration();
             const tabSize = configuration.get('editor.tabSize');
-            const output = []
-            let indentCount = 0
+            const output = [];
+            let indentCount = 0;
 
             for (let lineIndex = 0; lineIndex < document.lineCount; lineIndex++) {
-                let line = document.lineAt(lineIndex)
+                let line = document.lineAt(lineIndex);
 
                 // Remove // comment from line
-                let lineText = line.text.replace(/^\s*\/\/.*/, '')
+                let lineText = line.text.replace(/^\s*\/\/.*/, '');
 
                 // Whitespace at the beginning of the line.
-                let spaceMatch = line.text.match(/^\s*/)
-                let spaceLength = spaceMatch ? spaceMatch[0].length : 0
+                let spaceMatch = line.text.match(/^\s*/);
+                let spaceLength = spaceMatch ? spaceMatch[0].length : 0;
 
                 if (lineText.match(/^\s*\<\/\w+\>/)) {
                     // Begin in </tag>
-                    indentCount--
+                    indentCount--;
                 } else if (lineText.match(/^\s*[\}\]]/)) {
                     // Begin with } or ]
-                    indentCount--
+                    indentCount--;
                 }
 
-                let start = new vscode.Position(lineIndex, 0)
-                let end = new vscode.Position(lineIndex, spaceLength)
-                let indentation = ''
+                let start = new vscode.Position(lineIndex, 0);
+                let end = new vscode.Position(lineIndex, spaceLength);
+                let indentation = '';
 
                 if (indentCount >= 0 && !line.text.match(/^\s*$/)) {
                     // Positive indent || not only whitespace
-                    indentation = ' '.repeat(tabSize).repeat(indentCount)
+                    indentation = ' '.repeat(tabSize).repeat(indentCount);
                 }
 
-                let edit = vscode.TextEdit.replace(new vscode.Range(start, end), indentation)
+                let edit = vscode.TextEdit.replace(new vscode.Range(start, end), indentation);
 
                 output.push(edit)
 
@@ -45,17 +45,17 @@ function activate(context) {
                     // Begin in <tag>
                     if (!lineText.match(/\<\/\w+\>$|\/\>\s*$/)) {
                         // Not end with </tag> or />
-                        indentCount++
+                        indentCount++;
                     }
                 } else if (lineText.match(/\<\/\w+\>\s*$|\/\>\s*$/)) {
                     // End with </tag> or />
                     if (!lineText.match(/^\s*\<\/\w+\>/)) {
                         // Not begin with </tag>
-                        indentCount--
+                        indentCount--;
                     }
                 } else if (lineText.match(/[\{\[]\s*$/)) {
                     // End in { or [
-                    indentCount++
+                    indentCount++;
                 }
             }
 
