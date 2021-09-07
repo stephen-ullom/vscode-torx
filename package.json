@@ -12,9 +12,6 @@
 		"Formatters",
 		"Snippets"
 	],
-	"activationEvents": [
-		"onLanguage:torx"
-	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/stephen-ullom/vscode-torx.git"
@@ -24,7 +21,10 @@
 		"color": "#111111",
 		"theme": "dark"
 	},
-	"main": "./index.js",
+	"activationEvents": [
+		"onLanguage:torx"
+	],
+	"main": "out/extension.js",
 	"scripts": {
 		"update-grammar": "node ../../build/npm/update-grammar.js"
 	},
@@ -61,5 +61,9 @@
 				"path": "./snippets/torx.snippets.json"
 			}
 		]
+	},
+	"devDependencies": {
+		"@types/node": "^16.7.10",
+		"@types/vscode": "^1.60.0"
 	}
 }

@@ -236,7 +236,7 @@
 							"match": "([^\\s]+)=",
 							"captures": {
 								"1": {
-									"name": "entity.other.attribute-name.xml",
+									"name": "support.type.object.html-attribute",
 									"patterns": [
 										{
 											"include": "#torx"
