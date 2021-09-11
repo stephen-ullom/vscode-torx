@@ -17,8 +17,8 @@ exports.activate = function (context: vscode.ExtensionContext) {
     vscode.languages.registerDocumentFormattingEditProvider('torx', {
         provideDocumentFormattingEdits(document: vscode.TextDocument) {
             const editorConfig = vscode.workspace.getConfiguration('editor');
-            const useSpaces: boolean = editorConfig.insertSpaces === undefined ? false : editorConfig.insertSpaces;
-            const tabSize: number = Number(editorConfig.tabSize);
+            const useSpaces = editorConfig.insertSpaces === undefined ? false : Boolean(editorConfig.insertSpaces);
+            const tabSize = Number(editorConfig.tabSize);
             const edits: vscode.TextEdit[] = [];
             const indentString = useSpaces ? ' '.repeat(tabSize) : '\t';
             let indent = 0;
@@ -31,6 +31,7 @@ exports.activate = function (context: vscode.ExtensionContext) {
                     new vscode.Position(lineIndex, 0),
                     new vscode.Position(lineIndex, spaceIndex)
                 );
+                let hasTextBefore = false;
                 for (let charIndex = spaceIndex; charIndex < line.text.length; charIndex++) {
                     const lineTextRemaining = line.text.substring(charIndex);
                     const nextChar = lineTextRemaining.charAt(0);
@@ -110,16 +111,25 @@ exports.activate = function (context: vscode.ExtensionContext) {
                                 lineContext.push(Context.OpenXmlTag);
                             }
                             break;
+                        default:
+                            if (!hasTextBefore && lineContext.length === 0) {
+                                hasTextBefore = true;
+                            }
+                            break;
                     }
                 }
+
                 // Current line
                 if ([
                     Context.CloseCurlyBracket,
                     Context.CloseRoundBracket,
-                    Context.CloseSquareBracket,
-                    Context.CloseXmlTag
+                    Context.CloseSquareBracket
                 ].indexOf(getLast(lineContext)) >= 0) {
                     indent === 0 ? 0 : indent--;
+                } else if (getLast(lineContext) === Context.CloseXmlTag) {
+                    if (!hasTextBefore) {
+                        indent === 0 ? 0 : indent--;
+                    }
                 }
 
                 // Apply
@@ -137,6 +147,10 @@ exports.activate = function (context: vscode.ExtensionContext) {
                     indent++;
                 } else if (getLast(lineContext) === Context.CloseXmlAttributes) {
                     indent === 0 ? 0 : indent--;
+                } else if (getLast(lineContext) === Context.CloseXmlTag) {
+                    if (hasTextBefore) {
+                        indent === 0 ? 0 : indent--;
+                    }
                 }
             }
             return edits;
