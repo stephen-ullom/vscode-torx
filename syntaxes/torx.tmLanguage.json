@@ -47,12 +47,6 @@
 					"include": "#escape-entity"
 				},
 				{
-					"include": "#explicit-torx-expression"
-				},
-				{
-					"include": "#implicit-torx-expression"
-				},
-				{
 					"include": "#torx-statement"
 				},
 				{
@@ -63,6 +57,12 @@
 				},
 				{
 					"include": "#torx-else"
+				},
+				{
+					"include": "#explicit-torx-expression"
+				},
+				{
+					"include": "#implicit-torx-expression"
 				},
 				{
 					"include": "#torx-illegal"
@@ -137,21 +137,18 @@
 					},
 					"patterns": [
 						{
-							"include": "source.ts"
+							"include": "text.torx"
 						}
 					],
-					"end": "\\}"
+					"end": "\\}(?! else {)"
 				},
 				"torx-function": {
-					"begin": "\\@function\\s(\\w+)\\s?\\((.*)\\)\\s*\\{",
+					"begin": "\\@(function\\s\\w+\\s?\\((.*)\\))\\s*\\{",
 					"captures": {
 						"0": {
 							"name": "keyword.control.torx"
 						},
 						"1": {
-							"name": "meta.definition.function.torx"
-						},
-						"2": {
 							"patterns": [
 								{
 									"include": "source.ts"
@@ -162,7 +159,7 @@
 					"end": "\\}",
 					"patterns": [
 						{
-							"include": "text.html.torx"
+							"include": "text.torx"
 						}
 					]
 				},
@@ -188,7 +185,7 @@
 					"end": "\\}"
 				},
 				"torx-else": {
-					"begin": "else\\s*\\{",
+					"begin": "}\\s*else\\s*\\{",
 					"captures": {
 						"0": {
 							"name": "keyword.control.torx"
