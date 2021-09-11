@@ -2,6 +2,27 @@
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "Torx",
 	"scopeName": "text.torx",
+	"injections": {
+		"L:text.torx": {
+			"patterns": [
+				{
+					"include": "#torx-comment"
+				}
+			],
+			"repository": {
+				"torx-comment": {
+					"begin": "\\@\\*",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.torx"
+						}
+					},
+					"end": "\\*\\@",
+					"name": "comment.block.torx"
+				}
+			}
+		}
+	},
 	"patterns": [
 		{
 			"include": "#xml"
@@ -57,7 +78,7 @@
 					},
 					"patterns": [
 						{
-							"include": "source.js"
+							"include": "source.ts"
 						}
 					],
 					"end": "\\}"
@@ -76,7 +97,7 @@
 					},
 					"patterns": [
 						{
-							"include": "source.js"
+							"include": "source.ts"
 						}
 					],
 					"end": "\\)"
@@ -94,7 +115,7 @@
 						"2": {
 							"patterns": [
 								{
-									"include": "source.js"
+									"include": "source.ts"
 								}
 							]
 						}
@@ -109,14 +130,14 @@
 						"2": {
 							"patterns": [
 								{
-									"include": "source.js"
+									"include": "source.ts"
 								}
 							]
 						}
 					},
 					"patterns": [
 						{
-							"include": "source.js"
+							"include": "source.ts"
 						}
 					],
 					"end": "\\}"
@@ -133,7 +154,7 @@
 						"2": {
 							"patterns": [
 								{
-									"include": "source.js"
+									"include": "source.ts"
 								}
 							]
 						}
@@ -154,14 +175,14 @@
 						"2": {
 							"patterns": [
 								{
-									"include": "source.js"
+									"include": "source.ts"
 								}
 							]
 						}
 					},
 					"patterns": [
 						{
-							"include": "source.js"
+							"include": "source.ts"
 						}
 					],
 					"end": "\\}"
@@ -175,7 +196,7 @@
 					},
 					"patterns": [
 						{
-							"include": "source.js"
+							"include": "source.ts"
 						}
 					],
 					"end": "\\}"
