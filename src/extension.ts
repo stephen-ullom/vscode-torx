@@ -21,7 +21,6 @@ exports.activate = function (context: vscode.ExtensionContext) {
             const tabSize: number = Number(editorConfig.tabSize);
             const edits: vscode.TextEdit[] = [];
             const indentString = useSpaces ? ' '.repeat(tabSize) : '\t';
-            const context: Context[] = [];
             let indent = 0;
             for (let lineIndex = 0; lineIndex < document.lineCount; lineIndex++) {
                 const line = document.lineAt(lineIndex);
