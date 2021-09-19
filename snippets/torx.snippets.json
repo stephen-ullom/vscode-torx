@@ -36,6 +36,14 @@
         ],
         "description": "Function statement"
     },
+    "Include statement": {
+        "prefix": "@include",
+        "body": [
+            "@include(${1:filePath}) () {",
+            "\t$0"
+        ],
+        "description": "Function statement"
+    },
     "If statement": {
         "prefix": "@if",
         "body": [
