@@ -1,59 +1,58 @@
 {
-    "For loop": {
-        "prefix": "@for",
-        "body": [
-            "@for (let ${1:index} = 0; ${1:index} < ${2:array}.length; ${1:index}++) {",
-            "\t$0",
-            "}"
-        ],
-        "description": "For loop"
-    },
-    "For-In loop": {
+	"For Loop": {
+		"prefix": "f@or",
+		"body": [
+			"@for (let ${1:index} = 0; ${1:index} < ${2:array}.length; ${1:index}++) {",
+			"\t$0",
+			"}"
+		],
+		"description": "For Loop"
+	},
+    "For-In Loop": {
         "prefix": "@forin",
         "body": [
             "@for (const ${1:key} in ${2:object}) {",
-            "\tconst ${3:element} = ${2:object}[${1:key}];",
             "\t$0",
             "}"
         ],
-        "description": "For-In loop"
+        "description": "For-In Loop"
     },
-    "For-Of loop": {
+    "For-Of Loop": {
         "prefix": "@forof",
         "body": [
             "@for (const ${1:iterator} of ${2:object}) {",
             "\t$0",
             "}"
         ],
-        "description": "For-Of loop"
+        "description": "For-Of Loop"
     },
-    "Function statement": {
+    "Function Statement": {
         "prefix": "@function",
         "body": [
-            "@function ${1:name}(${2:params}) {",
+            "@function ${1:name}(${2:params}:${3:type}) {",
             "\t$0",
             "}"
         ],
-        "description": "Function statement"
+        "description": "Function Statement"
     },
-    "Include statement": {
+    "Include Function": {
         "prefix": "@include",
         "body": [
             "@include(${1:filePath}) () {",
             "\t$0"
         ],
-        "description": "Function statement"
+        "description": "Inlude Function"
     },
-    "If statement": {
+    "If Statement": {
         "prefix": "@if",
         "body": [
             "@if (${1:condition}) {",
             "\t$0",
             "}"
         ],
-        "description": "If statement"
+        "description": "If Statement"
     },
-    "If-Else statement": {
+    "If-Else Statement": {
         "prefix": "@ifelse",
         "body": [
             "@if (${1:condition}) {",
@@ -62,49 +61,6 @@
             "\t",
             "}"
         ],
-        "description": "If-Else statement"
-    },
-    "Switch statement": {
-        "prefix": "@switch",
-        "body": [
-            "@switch (${1:key}) {",
-            "\tcase ${2:value}:",
-            "\t\t$0",
-            "\t\tbreak;",
-            "",
-            "\tdefault:",
-            "\t\tbreak;",
-            "}"
-        ],
-        "description": "Switch statement"
-    },
-    "While statement": {
-        "prefix": "@while",
-        "body": [
-            "@while (${1:condition}) {",
-            "\t$0",
-            "}"
-        ],
-        "description": "While statement"
-    },
-    "Do-While statement": {
-        "prefix": "@dowhile",
-        "body": [
-            "@do {",
-            "\t$0",
-            "} while (${1:condition})"
-        ],
-        "description": "Do-While statement"
-    },
-    "Try-Catch statement": {
-        "prefix": "@trycatch",
-        "body": [
-            "@try {",
-            "\t$0",
-            "} catch (${1:error}) {",
-            "\t",
-            "}"
-        ],
-        "description": "Try-Catch statement"
+        "description": "If-Else Statement"
     }
 }
