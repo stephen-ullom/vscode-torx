@@ -2,7 +2,7 @@
 	"name": "torx",
 	"displayName": "Torx",
 	"description": "Torx syntax and snippets.",
-	"version": "1.0.0",
+	"version": "1.0.0-alpha",
 	"publisher": "stephen-ullom",
 	"engines": {
 		"vscode": "^1.14.0"
@@ -29,7 +29,7 @@
 		"commands": [
 			{
 				"command": "extension.torx",
-				"title": "Format Torx file"
+				"title": "Torx: Format document"
 			}
 		],
 		"languages": [
