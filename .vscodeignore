@@ -2,4 +2,5 @@
 .vscode
 .gitignore
 .tsconfig
+.prettierrc
 /src
