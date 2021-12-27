@@ -43,9 +43,6 @@
          "include": "#json"
       },
       {
-         "include": "#sql"
-      },
-      {
          "include": "#torx"
       }
    ],
@@ -56,7 +53,7 @@
                "include": "#torx-code-block"
             },
             {
-               "include": "#escape-entity"
+               "include": "#torx-escape-entity"
             },
             {
                "include": "#torx-statement"
@@ -74,10 +71,10 @@
                "include": "#torx-else"
             },
             {
-               "include": "#explicit-torx-expression"
+               "include": "#torx-explicit-expression"
             },
             {
-               "include": "#implicit-torx-expression"
+               "include": "#torx-implicit-expression"
             },
             {
                "include": "#torx-illegal"
@@ -98,11 +95,11 @@
                ],
                "end": "\\}"
             },
-            "escape-entity": {
+            "torx-escape-entity": {
                "match": "\\@\\@",
                "name": "keyword.control.torx"
             },
-            "explicit-torx-expression": {
+            "torx-explicit-expression": {
                "name": "meta.expression.explicit.torx",
                "begin": "(\\@)\\(",
                "captures": {
@@ -117,7 +114,7 @@
                ],
                "end": "\\)"
             },
-            "implicit-torx-expression": {
+            "torx-implicit-expression": {
                "name": "meta.expression.implicit.torx",
                "match": "(?<!@)@((\\w+)((?=\\.\\w)\\.\\w+)*((?=\\(.*\\))\\(.*\\))?((?=\\[.*\\]).*\\])?)",
                "captures": {
@@ -241,18 +238,38 @@
       "xml": {
          "patterns": [
             {
-               "match": "<\\/?([^\\s\\<\\>]+)>",
-               "captures": {
-                  "0": {
-                     "name": "punctuation.definition.tag.xml"
-                  },
-                  "1": {
-                     "name": "entity.name.tag.xml"
-                  }
-               },
-               "name": "meta.tag.xml"
+               "include": "#xml-comment"
             },
             {
+               "include": "#xml-tag"
+            },
+            {
+               "include": "#xml-close-tag"
+            }
+         ],
+         "repository": {
+            "xml-comment": {
+               "begin": "<!--",
+               "captures": {
+                  "0": {
+                     "name": "punctuation.definition.comment.xml"
+                  }
+               },
+               "end": "-->",
+               "name": "comment.block.xml",
+               "patterns": [
+                  {
+                     "begin": "--(?!>)",
+                     "captures": {
+                        "0": {
+                           "name": "invalid.illegal.bad-comments-or-CDATA.xml"
+                        }
+                     }
+                  }
+               ]
+            },
+            "xml-tag": {
+               "name": "meta.tag.xml",
                "begin": "<([^\\s\\<\\>\\/]+)",
                "beginCaptures": {
                   "0": {
@@ -267,22 +284,18 @@
                      ]
                   }
                },
-               "end": "(\\/?)>",
+               "end": "\\/?>",
                "endCaptures": {
                   "0": {
-                     "name": "entity.name.tag.xml"
-                  },
-                  "1": {
                      "name": "punctuation.definition.tag.xml"
                   }
                },
-               "name": "meta.tag.xml",
                "patterns": [
                   {
                      "include": "#torx"
                   },
                   {
-                     "include": "#strings"
+                     "include": "#string"
                   },
                   {
                      "match": "([^\\s]+)=",
@@ -298,8 +311,20 @@
                      }
                   }
                ]
+            },
+            "xml-close-tag": {
+               "name": "meta.tag.xml",
+               "match": "<\\/?([^\\s\\<\\>]+)>",
+               "captures": {
+                  "0": {
+                     "name": "punctuation.definition.tag.xml"
+                  },
+                  "1": {
+                     "name": "entity.name.tag.xml"
+                  }
+               }
             }
-         ]
+         }
       },
       "json": {
          "patterns": [
@@ -312,47 +337,33 @@
                      "include": "#torx"
                   },
                   {
-                     "include": "#strings"
+                     "include": "#json-comment"
                   },
                   {
-                     "include": "#numbers"
+                     "include": "#string"
+                  },
+                  {
+                     "include": "#number"
+                  },
+                  {
+                     "include": "#constant"
                   }
                ]
             }
-         ]
-      },
-      "sql": {
-         "patterns": [
-            {
-               "name": "string.uppercase.sql",
-               "match": "(\\s|^)[A-Z]{2,}(\\s|$)",
+         ],
+         "repository": {
+            "json-comment": {
+               "match": "//.*",
                "captures": {
                   "0": {
-                     "name": "variable.language.sql"
-                  }
-               }
-            },
-            {
-               "name": "string.quoted.sql",
-               "begin": "`",
-               "beginCaptures": {
-                  "0": {
-                     "name": "punctuation.definition.string.begin.sql"
+                     "name": "punctuation.definition.comment.js"
                   }
                },
-               "end": "`",
-               "endCaptures": {
-                  "0": {
-                     "name": "punctuation.definition.string.end.sql"
-                  }
-               }
-            },
-            {
-               "include": "#numbers"
+               "name": "comment.line.js"
             }
-         ]
+         }
       },
-      "strings": {
+      "string": {
          "patterns": [
             {
                "name": "string.quoted.single.text",
@@ -396,7 +407,7 @@
             }
          ]
       },
-      "numbers": {
+      "number": {
          "name": "number.text",
          "match": "\\d+",
          "captures": {
@@ -404,6 +415,10 @@
                "name": "constant.numeric.text"
             }
          }
+      },
+      "constant": {
+         "match": "\\b(?:true|false|null)\\b",
+         "name": "constant.language.json"
       }
    }
 }
