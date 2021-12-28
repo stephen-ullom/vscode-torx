@@ -270,7 +270,7 @@
             },
             "xml-tag": {
                "name": "meta.tag.xml",
-               "begin": "<([^\\s\\<\\>\\/]+)",
+               "begin": "<[!?]?([^\\s\\<\\>\\/]+)",
                "beginCaptures": {
                   "0": {
                      "name": "punctuation.definition.tag.xml"
@@ -284,7 +284,7 @@
                      ]
                   }
                },
-               "end": "\\/?>",
+               "end": "[\\/?]?>",
                "endCaptures": {
                   "0": {
                      "name": "punctuation.definition.tag.xml"
