@@ -176,19 +176,18 @@
                ]
             },
             "torx-include": {
-               "match": "@include\\((.*)\\)",
+               "begin": "(@include\\()",
                "captures": {
                   "0": {
                      "name": "keyword.control.torx"
-                  },
-                  "1": {
-                     "patterns": [
-                        {
-                           "include": "source.ts"
-                        }
-                     ]
                   }
-               }
+               },
+               "patterns": [
+                  {
+                     "include": "source.ts"
+                  }
+               ],
+               "end": "(\\))"
             },
             "torx-else-if": {
                "begin": "(else\\sif)\\s?(\\(.*\\))\\s*\\{",
