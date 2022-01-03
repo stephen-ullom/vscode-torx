@@ -149,7 +149,7 @@
                      "include": "text.torx"
                   }
                ],
-               "end": "\\}(?! else {)"
+               "end": "\\}(?! else )"
             },
             "torx-function": {
                "begin": "\\@function\\s(\\w+\\s?\\(.*\\))\\s*\\{",
@@ -190,7 +190,7 @@
                "end": "(\\))"
             },
             "torx-else-if": {
-               "begin": "(else\\sif)\\s?(\\(.*\\))\\s*\\{",
+               "begin": "}\\s*(else if)\\s?(\\(.*\\))\\s*\\{",
                "captures": {
                   "0": {
                      "name": "keyword.control.torx"
@@ -208,7 +208,7 @@
                      "include": "text.torx"
                   }
                ],
-               "end": "\\}"
+               "end": "\\}(?! else )"
             },
             "torx-else": {
                "begin": "}\\s*else\\s*\\{",
