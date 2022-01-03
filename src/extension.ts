@@ -54,13 +54,16 @@ function formatDocument(document: vscode.TextDocument, useSpaces = true, tabSize
             const nextChar = lineTextRemaining.charAt(0);
             if (nextChar === "@") {
                if (lineTextRemaining.charAt(1) === "*") {
+                  // start multiline comment
                   charIndex++;
                   commentDepth++;
                } else if (lineTextRemaining.charAt(1) === "/" && lineTextRemaining.charAt(2) === "/") {
+                  // single line comment
                   charIndex += lineTextRemaining.length;
                }
             } else if (commentDepth > 0) {
                if (nextChar === "*" && lineTextRemaining.charAt(1) === "@") {
+                  // end multiline comment
                   charIndex++;
                   commentDepth--;
                }
@@ -152,14 +155,14 @@ function formatDocument(document: vscode.TextDocument, useSpaces = true, tabSize
 
          // Current line
          if (
-            [Context.CloseCurlyBracket, Context.CloseRoundBracket, Context.CloseSquareBracket].indexOf(
-               getLast(lineContext)
-            ) >= 0
+            [Context.CloseCurlyBracket, Context.CloseRoundBracket, Context.CloseSquareBracket].filter((c) =>
+               lineContext.includes(c)
+            ).length > 0
          ) {
-            indent === 0 ? 0 : indent--;
+            if (indent > 0) indent--;
          } else if (getLast(lineContext) === Context.CloseXmlTag) {
-            if (!hasTextBefore) {
-               indent === 0 ? 0 : indent--;
+            if (!hasTextBefore && indent > 0) {
+               indent--;
             }
          }
 
@@ -180,10 +183,10 @@ function formatDocument(document: vscode.TextDocument, useSpaces = true, tabSize
       ) {
          indent++;
       } else if (getLast(lineContext) === Context.CloseXmlAttributes) {
-         indent === 0 ? 0 : indent--;
+         if (indent > 0) indent--;
       } else if (getLast(lineContext) === Context.CloseXmlTag) {
-         if (hasTextBefore) {
-            indent === 0 ? 0 : indent--;
+         if (hasTextBefore && indent > 0) {
+            indent--;
          }
       }
    }
