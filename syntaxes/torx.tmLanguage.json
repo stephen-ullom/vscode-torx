@@ -56,19 +56,16 @@
                "include": "#torx-escape-entity"
             },
             {
-               "include": "#torx-statement"
+               "include": "#torx-for"
+            },
+            {
+               "include": "#torx-if"
             },
             {
                "include": "#torx-function"
             },
             {
                "include": "#torx-include"
-            },
-            {
-               "include": "#torx-else-if"
-            },
-            {
-               "include": "#torx-else"
             },
             {
                "include": "#torx-explicit-expression"
@@ -130,8 +127,8 @@
                   }
                }
             },
-            "torx-statement": {
-               "begin": "@(?:for|if)\\s*\\((.*)\\)\\s*\\{",
+            "torx-for": {
+               "begin": "@for\\s*\\((.*)\\)\\s*\\{",
                "captures": {
                   "0": {
                      "name": "keyword.control.torx"
@@ -145,6 +142,46 @@
                   }
                },
                "patterns": [
+                  {
+                     "include": "text.torx"
+                  }
+               ],
+               "end": "\\}(?! else )"
+            },
+            "torx-if": {
+               "begin": "@if\\s*\\((.*)\\)\\s*\\{",
+               "captures": {
+                  "0": {
+                     "name": "keyword.control.torx"
+                  },
+                  "1": {
+                     "patterns": [
+                        {
+                           "include": "source.ts"
+                        }
+                     ]
+                  }
+               },
+               "patterns": [
+                  {
+                     "match": "}\\s*(else if)\\s?(\\(.*\\))\\s*\\{",
+                     "captures": {
+                        "0": {
+                           "name": "keyword.control.torx"
+                        },
+                        "2": {
+                           "patterns": [
+                              {
+                                 "include": "source.ts"
+                              }
+                           ]
+                        }
+                     }
+                  },
+                  {
+                     "match": "}\\s*else\\s*\\{",
+                     "name": "keyword.control.torx"
+                  },
                   {
                      "include": "text.torx"
                   }
@@ -188,41 +225,6 @@
                   }
                ],
                "end": "(\\))"
-            },
-            "torx-else-if": {
-               "begin": "}\\s*(else if)\\s?(\\(.*\\))\\s*\\{",
-               "captures": {
-                  "0": {
-                     "name": "keyword.control.torx"
-                  },
-                  "2": {
-                     "patterns": [
-                        {
-                           "include": "source.ts"
-                        }
-                     ]
-                  }
-               },
-               "patterns": [
-                  {
-                     "include": "text.torx"
-                  }
-               ],
-               "end": "\\}(?! else )"
-            },
-            "torx-else": {
-               "begin": "}\\s*else\\s*\\{",
-               "captures": {
-                  "0": {
-                     "name": "keyword.control.torx"
-                  }
-               },
-               "patterns": [
-                  {
-                     "include": "text.torx"
-                  }
-               ],
-               "end": "\\}"
             },
             "torx-illegal": {
                "match": "(\\@)[^\\w]",
