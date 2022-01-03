@@ -1,15 +1,22 @@
+## 0.3.0
+
+11 Sept 2021
+
+- Fixed code formatting.
+- Increased supported Code version to 1.14.0 and later.
+
 ## 0.2.2
 
 31 July 2021
 
-- Respect user tab size configuration
+- Respect user tab size configuration.
 
 ## 0.2.1
 
 18 Mar 2021
 
-- Fix default language for html files
-- Update readme
+- Fix default language for html files.
+- Update readme.
 
 ## 0.2.0
 

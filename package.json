@@ -2,18 +2,15 @@
 	"name": "torx",
 	"displayName": "Torx",
 	"description": "Torx syntax and snippets.",
-	"version": "0.2.2",
-	"publisher": "slulego",
+	"version": "0.3.0",
+	"publisher": "stephen-ullom",
 	"engines": {
-		"vscode": "0.10.x"
+		"vscode": "^1.14.0"
 	},
 	"categories": [
 		"Programming Languages",
 		"Formatters",
 		"Snippets"
-	],
-	"activationEvents": [
-		"onLanguage:torx"
 	],
 	"repository": {
 		"type": "git",
@@ -24,15 +21,15 @@
 		"color": "#111111",
 		"theme": "dark"
 	},
-	"main": "./index.js",
-	"scripts": {
-		"update-grammar": "node ../../build/npm/update-grammar.js"
-	},
+	"activationEvents": [
+		"onLanguage:torx"
+	],
+	"main": "out/extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "extension.torx",
-				"title": "Format Torx Files"
+				"title": "Torx: Format document"
 			}
 		],
 		"languages": [
@@ -51,11 +48,8 @@
 		"grammars": [
 			{
 				"language": "torx",
-				"scopeName": "text.html.torx",
-				"path": "./syntaxes/torx.tmLanguage.json",
-				"embeddedLanguages": {
-					"text.html.basic": "html"
-				}
+				"scopeName": "text.torx",
+				"path": "./syntaxes/torx.tmLanguage.json"
 			}
 		],
 		"snippets": [
@@ -64,5 +58,9 @@
 				"path": "./snippets/torx.snippets.json"
 			}
 		]
+	},
+	"devDependencies": {
+		"@types/node": "^16.7.10",
+		"@types/vscode": "^1.14.0"
 	}
 }
