@@ -1,66 +1,66 @@
 {
-	"name": "torx",
-	"displayName": "Torx",
-	"description": "Torx syntax and snippets.",
-	"version": "0.3.0",
-	"publisher": "stephen-ullom",
-	"engines": {
-		"vscode": "^1.14.0"
-	},
-	"categories": [
-		"Programming Languages",
-		"Formatters",
-		"Snippets"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/stephen-ullom/vscode-torx.git"
-	},
-	"icon": "images/icon.png",
-	"galleryBanner": {
-		"color": "#111111",
-		"theme": "dark"
-	},
-	"activationEvents": [
-		"onLanguage:torx"
-	],
-	"main": "out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "extension.torx",
-				"title": "Torx: Format document"
-			}
-		],
-		"languages": [
-			{
-				"id": "torx",
-				"extensions": [
-					".torx"
-				],
-				"aliases": [
-					"Torx",
-					"torx"
-				],
-				"configuration": "./language-configuration.json"
-			}
-		],
-		"grammars": [
-			{
-				"language": "torx",
-				"scopeName": "text.torx",
-				"path": "./syntaxes/torx.tmLanguage.json"
-			}
-		],
-		"snippets": [
-			{
-				"language": "torx",
-				"path": "./snippets/torx.snippets.json"
-			}
-		]
-	},
-	"devDependencies": {
-		"@types/node": "^16.7.10",
-		"@types/vscode": "^1.14.0"
-	}
+   "name": "torx",
+   "displayName": "Torx",
+   "description": "Torx syntax and snippets.",
+   "version": "0.3.0",
+   "publisher": "stephen-ullom",
+   "engines": {
+      "vscode": "^1.14.0"
+   },
+   "categories": [
+      "Programming Languages",
+      "Formatters",
+      "Snippets"
+   ],
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/stephen-ullom/vscode-torx.git"
+   },
+   "icon": "images/icon.png",
+   "galleryBanner": {
+      "color": "#111111",
+      "theme": "dark"
+   },
+   "activationEvents": [
+      "onLanguage:torx"
+   ],
+   "main": "dist/extension.js",
+   "contributes": {
+      "commands": [
+         {
+            "command": "extension.torx",
+            "title": "Torx: Format document"
+         }
+      ],
+      "languages": [
+         {
+            "id": "torx",
+            "extensions": [
+               ".torx"
+            ],
+            "aliases": [
+               "Torx",
+               "torx"
+            ],
+            "configuration": "./language-configuration.json"
+         }
+      ],
+      "grammars": [
+         {
+            "language": "torx",
+            "scopeName": "text.torx",
+            "path": "./syntaxes/torx.tmLanguage.json"
+         }
+      ],
+      "snippets": [
+         {
+            "language": "torx",
+            "path": "./snippets/torx.snippets.json"
+         }
+      ]
+   },
+   "devDependencies": {
+      "@types/node": "^16.7.10",
+      "@types/vscode": "^1.14.0"
+   }
 }
