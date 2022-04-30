@@ -2,7 +2,7 @@
    "name": "torx",
    "displayName": "Torx",
    "description": "Torx syntax and snippets.",
-   "version": "0.3.0",
+   "version": "0.3.1",
    "publisher": "stephen-ullom",
    "engines": {
       "vscode": "^1.14.0"
