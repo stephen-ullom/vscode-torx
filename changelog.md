@@ -1,40 +1,46 @@
+## 0.3.1
+
+30 Apr 2022
+
+-  Fixed XML attribute highlighting.
+
 ## 0.3.0
 
 11 Sept 2021
 
-- Fixed code formatting.
-- Increased supported Code version to 1.14.0 and later.
+-  Fixed code formatting.
+-  Increased supported Code version to 1.14.0 and later.
 
 ## 0.2.2
 
 31 July 2021
 
-- Respect user tab size configuration.
+-  Respect user tab size configuration.
 
 ## 0.2.1
 
 18 Mar 2021
 
-- Fix default language for html files.
-- Update readme.
+-  Fix default language for html files.
+-  Update readme.
 
 ## 0.2.0
 
 20 Dec 2020
 
-- Removed `@//` comment.
-- Improved formatting.
-- Improved syntax highlighting.
+-  Removed `@//` comment.
+-  Improved formatting.
+-  Improved syntax highlighting.
 
 ## 0.1.0
 
 8 Dec 2020
 
-- Added Torx formatter.
-- Improved icon.
+-  Added Torx formatter.
+-  Improved icon.
 
 ## 0.0.1
 
 6 Mar 2018
 
-- Initial Commit.
+-  Initial Commit.
