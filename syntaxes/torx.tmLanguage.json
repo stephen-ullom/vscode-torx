@@ -299,7 +299,7 @@
                      "include": "#string"
                   },
                   {
-                     "match": "([^\\s]+?)[=\\s]",
+                     "match": "([^\\s]+?)[=\\s>]",
                      "captures": {
                         "1": {
                            "name": "support.type.object.html-attribute",
