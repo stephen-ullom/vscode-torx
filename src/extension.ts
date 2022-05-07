@@ -57,7 +57,7 @@ function formatDocument(document: vscode.TextDocument, useSpaces = true, tabSize
                   // start multiline comment
                   charIndex++;
                   commentDepth++;
-               } else if (lineTextRemaining.charAt(1) === "/" && lineTextRemaining.charAt(2) === "/") {
+               } else if (lineTextRemaining.charAt(1) === "/") {
                   // single line comment
                   charIndex += lineTextRemaining.length;
                }

@@ -6,6 +6,9 @@
       "L:text.torx": {
          "patterns": [
             {
+               "include": "#torx-escape-entity"
+            },
+            {
                "include": "#torx-line-comment"
             },
             {
@@ -13,8 +16,12 @@
             }
          ],
          "repository": {
+            "torx-escape-entity": {
+               "match": "\\@\\@",
+               "name": "keyword.control.torx"
+            },
             "torx-line-comment": {
-               "match": "\\@//.*",
+               "match": "\\@/.*",
                "captures": {
                   "0": {
                      "name": "punctuation.definition.comment.torx"
@@ -53,9 +60,6 @@
                "include": "#torx-code-block"
             },
             {
-               "include": "#torx-escape-entity"
-            },
-            {
                "include": "#torx-for"
             },
             {
@@ -92,10 +96,7 @@
                ],
                "end": "\\}"
             },
-            "torx-escape-entity": {
-               "match": "\\@\\@",
-               "name": "keyword.control.torx"
-            },
+
             "torx-explicit-expression": {
                "name": "meta.expression.explicit.torx",
                "begin": "(\\@)\\(",
