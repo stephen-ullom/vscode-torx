@@ -1,8 +1,8 @@
-## 0.3.1
+## 1.0.0
 
-30 Apr 2022
+8 May 2022
 
--  Fixed XML attribute highlighting.
+-  Support for Torx v1.0.0
 
 ## 0.3.0
 
