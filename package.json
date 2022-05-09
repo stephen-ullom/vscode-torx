@@ -3,7 +3,7 @@
    "displayName": "Torx",
    "description": "Torx syntax and snippets.",
    "version": "1.0.0",
-   "publisher": "stephen-ullom",
+   "publisher": "slulego",
    "engines": {
       "vscode": "^1.14.0"
    },
