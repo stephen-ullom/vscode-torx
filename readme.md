@@ -1,12 +1,12 @@
 # Torx for Visual Studio Code
 
-![Screenshot](https://raw.githubusercontent.com/stephen-ullom/vscode-torx/develop/images/screenshot.png "Editor Screenshot")
-
 ## Features
 
 -  Code formatting
 -  Syntax highlighting
 -  Snippets
+
+![Screenshot](https://raw.githubusercontent.com/torxjs/vscode-torx/develop/images/screenshot.png "Editor Screenshot")
 
 ## Download
 
