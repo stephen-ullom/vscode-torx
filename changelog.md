@@ -1,3 +1,9 @@
+## 1.0.1
+
+8 May 2022
+
+-  Fix icon position
+
 ## 1.0.0
 
 8 May 2022
