@@ -1,8 +1,8 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "rootDir": "./src",
-        "outDir": "./out",
-    },
-    "exclude": ["node_modules", ".vscode-test"]
+   "compilerOptions": {
+      "module": "commonjs",
+      "rootDir": "./src",
+      "outDir": "./dist"
+   },
+   "exclude": ["node_modules", ".vscode-test"]
 }

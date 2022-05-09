@@ -1,19 +1,13 @@
 # Torx for Visual Studio Code
 
-![Screenshot](https://raw.githubusercontent.com/stephen-ullom/vscode-torx/master/images/screenshot.png "Editor Screenshot")
-
-## Features
-
-- Formatting
-- Syntax highlighting
-- Snippets
-
-## Download
+Torx is the TypeScript template engine for node.
 
 Install the [npm package](https://www.npmjs.com/package/torx).
 
-Install the extension from [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Slulego.torx).
+## Features
 
-## Contribute
+-  Code formatting
+-  Syntax highlighting
+-  Snippets
 
-View the extension repository on [GitHub](https://github.com/stephen-ullom/vscode-torx)
+![Screenshot](https://raw.githubusercontent.com/torxjs/vscode-torx/develop/images/screenshot.png "Editor Screenshot")
