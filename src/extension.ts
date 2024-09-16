@@ -19,6 +19,7 @@ exports.activate = function () {
          const activeTextEditor = vscode.window.activeTextEditor;
          const useSpaces = Boolean(activeTextEditor.options.insertSpaces);
          const tabSize = Number(activeTextEditor.options.tabSize);
+
          return formatDocument(document, useSpaces, tabSize);
       },
    });
@@ -31,13 +32,16 @@ exports.activate = function () {
  * @param tabSize - the number of spaces if spaces are enabled
  */
 function formatDocument(document: vscode.TextDocument, useSpaces = true, tabSize = 4): vscode.TextEdit[] {
-   const edits: vscode.TextEdit[] = [];
-   const indentString = useSpaces ? " ".repeat(tabSize) : "\t";
    let indent = 0;
    let commentDepth = 0;
+
+   const edits: vscode.TextEdit[] = [];
+   const indentString = useSpaces ? " ".repeat(tabSize) : "\t";
+
    for (let lineIndex = 0; lineIndex < document.lineCount; lineIndex++) {
-      let edit: vscode.TextEdit;
+      let edit: vscode.TextEdit | undefined;
       let hasTextBefore = false;
+
       const line = document.lineAt(lineIndex);
       const lineContext: Context[] = [];
       const spaceIndex = line.firstNonWhitespaceCharacterIndex;
@@ -45,8 +49,9 @@ function formatDocument(document: vscode.TextDocument, useSpaces = true, tabSize
          new vscode.Position(lineIndex, 0),
          new vscode.Position(lineIndex, spaceIndex)
       );
-      // If a line is empty, then remove all whitespace
+
       if (line.text.match(/^\s*$/g)) {
+         // If a line is empty, then remove all whitespace
          edit = vscode.TextEdit.replace(spaceRange, "");
       } else {
          for (let charIndex = spaceIndex; charIndex < line.text.length; charIndex++) {
@@ -166,10 +171,16 @@ function formatDocument(document: vscode.TextDocument, useSpaces = true, tabSize
             }
          }
 
-         // Apply
-         edit = vscode.TextEdit.replace(spaceRange, indentString.repeat(indent));
+         // Apply if the line has changed
+         const lineText = line.text.substring(spaceIndex).trim();
+         const newLine = indentString.repeat(indent) + lineText;
+
+         if (newLine !== line.text) {
+            edit = vscode.TextEdit.replace(line.range, newLine);
+         }
       }
-      edits.push(edit);
+
+      if (edit) edits.push(edit);
 
       // Next line
       if (
@@ -190,6 +201,7 @@ function formatDocument(document: vscode.TextDocument, useSpaces = true, tabSize
          }
       }
    }
+
    return edits;
 }
 

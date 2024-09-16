@@ -1,14 +1,20 @@
+## 1.0.2
+
+16 September 2024
+
+-  Remove trailing whitespace.
+
 ## 1.0.1
 
 8 May 2022
 
--  Fix icon position
+-  Fix icon position.
 
 ## 1.0.0
 
 8 May 2022
 
--  Support for Torx v1.0.0
+-  Support for Torx v1.0.0.
 
 ## 0.3.0
 

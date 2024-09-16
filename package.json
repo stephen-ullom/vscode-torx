@@ -2,7 +2,7 @@
    "name": "torx",
    "displayName": "Torx",
    "description": "Torx syntax and snippets.",
-   "version": "1.0.1",
+   "version": "1.0.2",
    "publisher": "slulego",
    "engines": {
       "vscode": "^1.14.0"
@@ -21,17 +21,8 @@
       "color": "#111111",
       "theme": "dark"
    },
-   "activationEvents": [
-      "onLanguage:torx"
-   ],
    "main": "dist/extension.js",
    "contributes": {
-      "commands": [
-         {
-            "command": "extension.torx",
-            "title": "Torx: Format document"
-         }
-      ],
       "languages": [
          {
             "id": "torx",
@@ -57,6 +48,9 @@
             "language": "torx",
             "path": "./snippets/torx.snippets.json"
          }
+      ],
+      "activationEvents": [
+         "onLanguage:torx"
       ]
    },
    "devDependencies": {
