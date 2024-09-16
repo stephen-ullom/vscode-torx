@@ -47,7 +47,7 @@ function formatDocument(document: vscode.TextDocument, useSpaces = true, tabSize
       const spaceIndex = line.firstNonWhitespaceCharacterIndex;
       const spaceRange = new vscode.Range(
          new vscode.Position(lineIndex, 0),
-         new vscode.Position(lineIndex, spaceIndex)
+         new vscode.Position(lineIndex, spaceIndex),
       );
 
       if (line.text.match(/^\s*$/g)) {
@@ -100,7 +100,7 @@ function formatDocument(document: vscode.TextDocument, useSpaces = true, tabSize
                   case "]":
                      if (
                         [Context.OpenCurlyBracket, Context.OpenRoundBracket, Context.OpenSquareBracket].indexOf(
-                           getLast(lineContext)
+                           getLast(lineContext),
                         ) >= 0
                      ) {
                         lineContext.pop();
@@ -161,7 +161,7 @@ function formatDocument(document: vscode.TextDocument, useSpaces = true, tabSize
          // Current line
          if (
             [Context.CloseCurlyBracket, Context.CloseRoundBracket, Context.CloseSquareBracket].filter((c) =>
-               lineContext.includes(c)
+               lineContext.includes(c),
             ).length > 0
          ) {
             if (indent > 0) indent--;

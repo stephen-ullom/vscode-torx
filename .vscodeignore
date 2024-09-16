@@ -1,6 +1,12 @@
+# macOS
 .DS_Store
+
+# Developer
 .vscode
+
+# Configuration
+/src
 .gitignore
 .tsconfig
 .prettierrc
-/src
+.package-lock.json
