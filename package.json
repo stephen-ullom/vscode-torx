@@ -4,6 +4,7 @@
    "description": "Torx syntax and snippets.",
    "version": "1.0.2",
    "publisher": "slulego",
+   "license": "MIT",
    "engines": {
       "vscode": "^1.14.0"
    },
@@ -22,6 +23,9 @@
       "theme": "dark"
    },
    "main": "dist/extension.js",
+   "activationEvents": [
+      "onLanguage:torx"
+   ],
    "contributes": {
       "languages": [
          {
@@ -49,8 +53,11 @@
             "path": "./snippets/torx.snippets.json"
          }
       ],
-      "activationEvents": [
-         "onLanguage:torx"
+      "commands": [
+         {
+            "command": "torx.formatDocument",
+            "title": "Format Torx Document"
+         }
       ]
    },
    "devDependencies": {
